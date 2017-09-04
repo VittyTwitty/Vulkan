@@ -1,0 +1,26 @@
+<header>
+  header
+</header>
+<div class="s-main">
+  <aside class="aside">
+    <form class="aside-form" [formGroup]="addForm" novalidate>
+      <md-form-field class="example-full-width">
+        <input mdInput placeholder="Имя" formControlName="name">
+      </md-form-field>
+      <md-form-field class="example-full-width">
+        <input mdInput placeholder="Фамилия" formControlName="surname">
+      </md-form-field>
+      <md-form-field class="example-full-width">
+        <input type="time" mdInput placeholder="Текущее время" formControlName="time">
+      </md-form-field>
+      <md-form-field class="example-full-width">
+        <input type="number" mdInput placeholder="Количество минут" formControlName="countTime">
+      </md-form-field>
+      <button md-button>Запустить</button>
+
+    </form>
+  </aside>
+  <article class="article">
+    <app-home-list></app-home-list>
+  </article>
+</div>
