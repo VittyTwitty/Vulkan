@@ -9,12 +9,14 @@ export class ChildrenService {
 
 
   constructor(private db: AngularFireDatabase) {
+    this.items = this.db.list('/children');
   }
 
   getItemsList() {
-    this.items = this.db.list('/children');
+
     return this.items.map(
       (data) => {
+        this.children = [];
         data.forEach(el => {
           const currentChild = new Child(el);
           this.children.push(currentChild);
@@ -23,7 +25,10 @@ export class ChildrenService {
         return this.children;
       }
     );
+  }
 
+  addChildInList(data) {
+    this.items.push(data);
   }
 
 }

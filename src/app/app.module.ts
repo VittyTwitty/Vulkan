@@ -17,6 +17,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { HomeListComponent } from './home-list/home-list.component';
 import { HomeFormComponent } from './home-form/home-form.component';
 import { ChildrenService } from './shared/services/children.service';
+import { MomentModule } from 'angular2-moment';
+import { TimerService } from './shared/services/timer.service';
 
 
 @NgModule({
@@ -35,6 +37,7 @@ import { ChildrenService } from './shared/services/children.service';
     CdkTableModule,
     MdPaginatorModule,
     ReactiveFormsModule,
+    MomentModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -44,7 +47,8 @@ import { ChildrenService } from './shared/services/children.service';
       })
   ],
   providers: [
-    ChildrenService
+    ChildrenService,
+    TimerService
   ],
   bootstrap: [
     AppComponent

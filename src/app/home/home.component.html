@@ -1,9 +1,11 @@
 <header>
   header
+
+  <br>Time: {{myDate | amTimeAgo}}
 </header>
 <div class="s-main">
   <aside class="aside">
-    <form class="aside-form" [formGroup]="addForm" novalidate>
+    <form class="aside-form" [formGroup]="addForm" #formAddChild="ngForm" (submit)="addChild(formAddChild)">
       <md-form-field class="example-full-width">
         <input mdInput placeholder="Имя" formControlName="name">
       </md-form-field>
@@ -13,10 +15,15 @@
       <md-form-field class="example-full-width">
         <input type="time" mdInput placeholder="Текущее время" formControlName="time">
       </md-form-field>
-      <md-form-field class="example-full-width">
-        <input type="number" mdInput placeholder="Количество минут" formControlName="countTime">
-      </md-form-field>
-      <button md-button>Запустить</button>
+
+        <md-form-field class="example-full-width">
+          <input type="number" mdInput placeholder="Количество часов" formControlName="hours">
+        </md-form-field>
+        <md-form-field class="example-full-width">
+          <input type="number" mdInput placeholder="Количество минут" formControlName="minutes">
+        </md-form-field>
+
+      <button md-button [disabled]="!formAddChild.valid">Запустить</button>
 
     </form>
   </aside>

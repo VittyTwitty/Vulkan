@@ -1,3 +1,7 @@
 @import "_vars.scss";
 @import "_libs.scss";
 @import "_fonts.scss";
+
+body {
+  font-family: 'PT Sans', sans-serif;
+}
