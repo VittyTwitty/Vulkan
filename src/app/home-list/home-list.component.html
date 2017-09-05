@@ -38,6 +38,13 @@
         <md-header-cell *mdHeaderCellDef> Осталось времени</md-header-cell>
         <md-cell *mdCellDef="let row"> {{row.countTime2 }} мин.</md-cell>
       </ng-container>
+      <!-- Delete Column -->
+      <ng-container mdColumnDef="delete">
+        <md-header-cell *mdHeaderCellDef></md-header-cell>
+        <md-cell *mdCellDef="let row" class="md-cell_delete">
+          <button md-button class="mat-warn" (click)="outChild(row.id)">Выход</button>
+        </md-cell>
+      </ng-container>
 
 
       <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>

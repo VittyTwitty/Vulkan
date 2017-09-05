@@ -27,7 +27,7 @@ export class HomeListComponent implements AfterViewInit, OnDestroy {
   sub: Subscription;
 
 
-  displayedColumns = ['userId', 'userName', 'surname', 'time', 'countTime', 'countTime2'];
+  displayedColumns = ['userId', 'userName', 'surname', 'time', 'countTime', 'countTime2', 'delete'];
   public exampleDatabase;
   dataSource: ExampleDataSource | null;
 
@@ -60,6 +60,10 @@ export class HomeListComponent implements AfterViewInit, OnDestroy {
         }
         this.dataSource.filter = this.filter.nativeElement.value;
       });
+  }
+
+  outChild(el) {
+    console.log(el)
   }
 
   ngOnDestroy() {
