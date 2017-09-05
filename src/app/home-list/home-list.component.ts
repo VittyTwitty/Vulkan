@@ -152,7 +152,7 @@ export class ExampleDatabase {
     const a = new TimerService(this.timeLeftNumber);
 
     a.getTimer().subscribe(res => {
-      this.timeLeftNum = res;
+      return this.timeLeftNum = res;
     });
     console.log(this.timeLeftNum);
 
@@ -162,7 +162,7 @@ export class ExampleDatabase {
       surname: userSecondName,
       time,
       countTime: this.countTime,
-      countTime2: this.timeLeftNum
+      countTime2: a.getTimer()
     };
   }
 }
