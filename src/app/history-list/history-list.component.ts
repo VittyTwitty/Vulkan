@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
 
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
@@ -9,35 +9,32 @@ import 'rxjs/add/observable/fromEvent';
 import { Observable } from 'rxjs/Observable';
 import { ChildrenService } from '../shared/services/children.service';
 import { Subscription } from 'rxjs/Subscription';
-import { TimerService } from '../shared/services/timer.service';
-import { ExampleDataSource } from './data-source';
-import { ExampleDatabase } from './database-worker';
-import { MdSnackBar } from '@angular/material';
+import { ExampleDataSource } from '../home-list/data-source';
+import { HistoryDatabase } from './database-history';
 
 @Component({
-  selector: 'app-home-list',
-  templateUrl: './home-list.component.html',
-  styleUrls: ['./home-list.component.scss'],
-  providers: [TimerService]
+  selector: 'app-history-list',
+  templateUrl: './history-list.component.html',
+  styleUrls: ['./history-list.component.scss']
 })
-export class HomeListComponent implements AfterViewInit, OnDestroy {
+export class HistoryListComponent implements AfterViewInit, OnDestroy {
   names: any[] = [];
   children: any[];
   sub: Subscription;
   ids: string[] = [];
 
-  displayedColumns = ['userId', 'userName', 'surname', 'time', 'countTime', 'countTime2', 'delete'];
+  displayedColumns = ['userId', 'userName', 'surname', 'time', 'countTime'];
   public exampleDatabase;
   dataSource: ExampleDataSource | null;
 
   @ViewChild('filter') filter: ElementRef;
 
-  constructor(private childrenService: ChildrenService, public snackBar: MdSnackBar) {
+  constructor(private childrenService: ChildrenService) {
 
   }
 
   ngAfterViewInit() {
-    this.sub = this.childrenService.getItemsList().subscribe(
+    this.sub = this.childrenService.getChildHistory().subscribe(
       (res) => {
         this.children = [];
         res.forEach(el => {
@@ -45,7 +42,7 @@ export class HomeListComponent implements AfterViewInit, OnDestroy {
           this.names.push(el.name);
           this.ids.push(el.id);
         });
-        this.exampleDatabase = new ExampleDatabase(this.children);
+        this.exampleDatabase = new HistoryDatabase(this.children);
         this.dataSource = new ExampleDataSource(this.exampleDatabase);
       }
     );
@@ -59,20 +56,6 @@ export class HomeListComponent implements AfterViewInit, OnDestroy {
         }
         this.dataSource.filter = this.filter.nativeElement.value;
       });
-  }
-
-  public outChild(item) {
-    // this.childrenService.deleteChild(item.key);
-    this.snackBar.open(`${item.name} ${item.surname}`, 'Вышел', {
-      duration: 3000,
-    });
-    this.childrenService.addChildToHistory({
-      name: item.name,
-      surname: item.surname,
-      id: item.key,
-      time: item.countTime
-    });
-    console.log(item);
   }
 
   ngOnDestroy() {

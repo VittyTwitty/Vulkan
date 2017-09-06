@@ -31,19 +31,7 @@
       <!-- CountTime Column -->
       <ng-container mdColumnDef="countTime">
         <md-header-cell *mdHeaderCellDef> Оплачено</md-header-cell>
-        <md-cell *mdCellDef="let row"> {{row.countTime }}</md-cell>
-      </ng-container>
-      <!-- CountTime2 Column -->
-      <ng-container mdColumnDef="countTime2">
-        <md-header-cell *mdHeaderCellDef> Осталось времени</md-header-cell>
-        <md-cell *mdCellDef="let row"> {{row.countTime2 }} мин.</md-cell>
-      </ng-container>
-      <!-- Delete Column -->
-      <ng-container mdColumnDef="delete">
-        <md-header-cell *mdHeaderCellDef></md-header-cell>
-        <md-cell *mdCellDef="let row" class="md-cell_delete">
-          <button md-button class="mat-warn" (click)="outChild(row)">Выход</button>
-        </md-cell>
+        <md-cell *mdCellDef="let row"> {{row.time }}</md-cell>
       </ng-container>
 
 

@@ -4,7 +4,7 @@ export class Child {
   public id?: number;
   public hours?: string | number;
   public minutes?: string | number;
-  public time?: Date;
+  public time?: Date | string;
 
   constructor(data) {
     this.name = data.name;

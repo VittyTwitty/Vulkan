@@ -6,7 +6,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { PreloadAllModules, RouterModule } from '@angular/router';
 import { appRoutes } from './app.routing';
-import { MdButtonModule, MdInputModule, MdPaginatorModule, MdTableModule } from '@angular/material';
+import {
+  MdButtonModule, MdInputModule, MdPaginatorModule, MdSnackBarModule, MdTableModule,
+  MdTabsModule
+} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CdkTableModule } from '@angular/cdk/table';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -19,6 +22,7 @@ import { HomeFormComponent } from './home-form/home-form.component';
 import { ChildrenService } from './shared/services/children.service';
 import { MomentModule } from 'angular2-moment';
 import { TimerService } from './shared/services/timer.service';
+import { HistoryListComponent } from './history-list/history-list.component';
 
 
 @NgModule({
@@ -26,7 +30,8 @@ import { TimerService } from './shared/services/timer.service';
     AppComponent,
     HomeComponent,
     HomeListComponent,
-    HomeFormComponent
+    HomeFormComponent,
+    HistoryListComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +43,8 @@ import { TimerService } from './shared/services/timer.service';
     MdPaginatorModule,
     ReactiveFormsModule,
     MomentModule,
+    MdSnackBarModule,
+    MdTabsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,

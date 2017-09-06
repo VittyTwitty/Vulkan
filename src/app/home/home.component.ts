@@ -10,7 +10,11 @@ import { ChildrenService } from '../shared/services/children.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  public navLinks = ['/list', '/history'];
+  public tabLinks = [
+    {label: 'Список пользователей', link: '/list'},
+    {label: 'История', link: '/history'},
+  ];
   public myDate = new Date();
 
   public addForm: FormGroup = new FormGroup({
@@ -36,9 +40,6 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.sub = this.childrenService.getItemsList().subscribe(res => {
-    //   console.log(res);
-    // });
   }
 
 }

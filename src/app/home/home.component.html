@@ -16,18 +16,28 @@
         <input type="time" mdInput placeholder="Текущее время" formControlName="time">
       </md-form-field>
 
-        <md-form-field class="example-full-width">
-          <input type="number" mdInput placeholder="Количество часов" formControlName="hours">
-        </md-form-field>
-        <md-form-field class="example-full-width">
-          <input type="number" mdInput placeholder="Количество минут" formControlName="minutes">
-        </md-form-field>
+      <md-form-field class="example-full-width">
+        <input type="number" mdInput placeholder="Количество часов" formControlName="hours">
+      </md-form-field>
+      <md-form-field class="example-full-width">
+        <input type="number" mdInput placeholder="Количество минут" formControlName="minutes">
+      </md-form-field>
 
       <button md-button [disabled]="!formAddChild.valid">Запустить</button>
 
     </form>
   </aside>
   <article class="article">
-    <app-home-list></app-home-list>
+    <nav md-tab-nav-bar>
+      <a md-tab-link
+         *ngFor="let link of tabLinks"
+         [routerLink]="link.link"
+         routerLinkActive #rla="routerLinkActive"
+         [active]="rla.isActive">
+        {{link.label}}
+      </a>
+    </nav>
+    <router-outlet></router-outlet>
+    <!--<app-home-list></app-home-list>-->
   </article>
 </div>
